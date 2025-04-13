@@ -17,5 +17,3 @@ if x >= y && z != 0 then return z;
 if x==y then return x*y;
 if x!=0 then print(nonZeroDigit)
 adham_allam = 10**10;
-
-1fxdet2 = j;
