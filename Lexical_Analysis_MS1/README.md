@@ -47,7 +47,7 @@ We have added more Keywords and Operators to deal with different test cases as i
     A helper class `TokenRule` is defined to encapsulate the regular expression pattern and its corresponding token type. Each rule is compiled using Python's `re` module for efficient matching.
 
 2. `LexicalAnalyzer Class`
-    The `LexicalAnalyzer` class initializes with predefined sets of keywords and operators. It defines a list of TokenRule instances to match different token types:
+    The `LexicalAnalyzer` class initializes with predefined sets of keywords and operators. It defines a list of `TokenRule` instances to match different token types:
 
     - ***Keywords***: Matched using word boundaries to ensure exact matches.
 
@@ -61,7 +61,7 @@ We have added more Keywords and Operators to deal with different test cases as i
 
 3. **Input Scanning & Tokenization (`lexer(file_path)`)**:
 
-This method performs the following steps:
+This method performs the following steps which included inside the `LexicalAnalyzer Class`:
  
 - Opens and reads the input file line by line.
 
