@@ -1,0 +1,13 @@
+int x;
+int y;
+int z;
+string email;
+string name;
+string greeting;
+
+x = 5;
+y = x + 3;
+z = x/y;
+email = "adham.allam.x@gmail.com";
+name = "Alice";
+greeting = "Hello" + " World!";

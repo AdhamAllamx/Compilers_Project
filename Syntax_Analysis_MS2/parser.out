@@ -1,0 +1,361 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> stmt_list
+Rule 2     stmt_list -> stmt stmt_list
+Rule 3     stmt_list -> stmt
+Rule 4     stmt -> var_decl SEMI
+Rule 5     stmt -> assignment SEMI
+Rule 6     var_decl -> type ID
+Rule 7     type -> INT
+Rule 8     type -> STRING_TYPE
+Rule 9     assignment -> ID EQUALS expr
+Rule 10    expr -> expr ADDITION term
+Rule 11    expr -> expr SUBTRACTION term
+Rule 12    expr -> expr MULTIPLICATION term
+Rule 13    expr -> expr DIVISION term
+Rule 14    expr -> term
+Rule 15    term -> NUM
+Rule 16    term -> ID
+Rule 17    term -> STRING
+
+Terminals, with rules where they appear
+
+ADDITION             : 10
+DIVISION             : 13
+EQUALS               : 9
+ID                   : 6 9 16
+INT                  : 7
+MULTIPLICATION       : 12
+NUM                  : 15
+SEMI                 : 4 5
+STRING               : 17
+STRING_TYPE          : 8
+SUBTRACTION          : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 5
+expr                 : 9 10 11 12 13
+program              : 0
+stmt                 : 2 3
+stmt_list            : 1 2
+term                 : 10 11 12 13 14
+type                 : 6
+var_decl             : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . stmt_list
+    (2) stmt_list -> . stmt stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . var_decl SEMI
+    (5) stmt -> . assignment SEMI
+    (6) var_decl -> . type ID
+    (9) assignment -> . ID EQUALS expr
+    (7) type -> . INT
+    (8) type -> . STRING_TYPE
+
+    ID              shift and go to state 7
+    INT             shift and go to state 8
+    STRING_TYPE     shift and go to state 9
+
+    program                        shift and go to state 1
+    stmt_list                      shift and go to state 2
+    stmt                           shift and go to state 3
+    var_decl                       shift and go to state 4
+    assignment                     shift and go to state 5
+    type                           shift and go to state 6
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> stmt_list .
+
+    $end            reduce using rule 1 (program -> stmt_list .)
+
+
+state 3
+
+    (2) stmt_list -> stmt . stmt_list
+    (3) stmt_list -> stmt .
+    (2) stmt_list -> . stmt stmt_list
+    (3) stmt_list -> . stmt
+    (4) stmt -> . var_decl SEMI
+    (5) stmt -> . assignment SEMI
+    (6) var_decl -> . type ID
+    (9) assignment -> . ID EQUALS expr
+    (7) type -> . INT
+    (8) type -> . STRING_TYPE
+
+    $end            reduce using rule 3 (stmt_list -> stmt .)
+    ID              shift and go to state 7
+    INT             shift and go to state 8
+    STRING_TYPE     shift and go to state 9
+
+    stmt                           shift and go to state 3
+    stmt_list                      shift and go to state 10
+    var_decl                       shift and go to state 4
+    assignment                     shift and go to state 5
+    type                           shift and go to state 6
+
+state 4
+
+    (4) stmt -> var_decl . SEMI
+
+    SEMI            shift and go to state 11
+
+
+state 5
+
+    (5) stmt -> assignment . SEMI
+
+    SEMI            shift and go to state 12
+
+
+state 6
+
+    (6) var_decl -> type . ID
+
+    ID              shift and go to state 13
+
+
+state 7
+
+    (9) assignment -> ID . EQUALS expr
+
+    EQUALS          shift and go to state 14
+
+
+state 8
+
+    (7) type -> INT .
+
+    ID              reduce using rule 7 (type -> INT .)
+
+
+state 9
+
+    (8) type -> STRING_TYPE .
+
+    ID              reduce using rule 8 (type -> STRING_TYPE .)
+
+
+state 10
+
+    (2) stmt_list -> stmt stmt_list .
+
+    $end            reduce using rule 2 (stmt_list -> stmt stmt_list .)
+
+
+state 11
+
+    (4) stmt -> var_decl SEMI .
+
+    ID              reduce using rule 4 (stmt -> var_decl SEMI .)
+    INT             reduce using rule 4 (stmt -> var_decl SEMI .)
+    STRING_TYPE     reduce using rule 4 (stmt -> var_decl SEMI .)
+    $end            reduce using rule 4 (stmt -> var_decl SEMI .)
+
+
+state 12
+
+    (5) stmt -> assignment SEMI .
+
+    ID              reduce using rule 5 (stmt -> assignment SEMI .)
+    INT             reduce using rule 5 (stmt -> assignment SEMI .)
+    STRING_TYPE     reduce using rule 5 (stmt -> assignment SEMI .)
+    $end            reduce using rule 5 (stmt -> assignment SEMI .)
+
+
+state 13
+
+    (6) var_decl -> type ID .
+
+    SEMI            reduce using rule 6 (var_decl -> type ID .)
+
+
+state 14
+
+    (9) assignment -> ID EQUALS . expr
+    (10) expr -> . expr ADDITION term
+    (11) expr -> . expr SUBTRACTION term
+    (12) expr -> . expr MULTIPLICATION term
+    (13) expr -> . expr DIVISION term
+    (14) expr -> . term
+    (15) term -> . NUM
+    (16) term -> . ID
+    (17) term -> . STRING
+
+    NUM             shift and go to state 18
+    ID              shift and go to state 15
+    STRING          shift and go to state 19
+
+    expr                           shift and go to state 16
+    term                           shift and go to state 17
+
+state 15
+
+    (16) term -> ID .
+
+    ADDITION        reduce using rule 16 (term -> ID .)
+    SUBTRACTION     reduce using rule 16 (term -> ID .)
+    MULTIPLICATION  reduce using rule 16 (term -> ID .)
+    DIVISION        reduce using rule 16 (term -> ID .)
+    SEMI            reduce using rule 16 (term -> ID .)
+
+
+state 16
+
+    (9) assignment -> ID EQUALS expr .
+    (10) expr -> expr . ADDITION term
+    (11) expr -> expr . SUBTRACTION term
+    (12) expr -> expr . MULTIPLICATION term
+    (13) expr -> expr . DIVISION term
+
+    SEMI            reduce using rule 9 (assignment -> ID EQUALS expr .)
+    ADDITION        shift and go to state 20
+    SUBTRACTION     shift and go to state 21
+    MULTIPLICATION  shift and go to state 22
+    DIVISION        shift and go to state 23
+
+
+state 17
+
+    (14) expr -> term .
+
+    ADDITION        reduce using rule 14 (expr -> term .)
+    SUBTRACTION     reduce using rule 14 (expr -> term .)
+    MULTIPLICATION  reduce using rule 14 (expr -> term .)
+    DIVISION        reduce using rule 14 (expr -> term .)
+    SEMI            reduce using rule 14 (expr -> term .)
+
+
+state 18
+
+    (15) term -> NUM .
+
+    ADDITION        reduce using rule 15 (term -> NUM .)
+    SUBTRACTION     reduce using rule 15 (term -> NUM .)
+    MULTIPLICATION  reduce using rule 15 (term -> NUM .)
+    DIVISION        reduce using rule 15 (term -> NUM .)
+    SEMI            reduce using rule 15 (term -> NUM .)
+
+
+state 19
+
+    (17) term -> STRING .
+
+    ADDITION        reduce using rule 17 (term -> STRING .)
+    SUBTRACTION     reduce using rule 17 (term -> STRING .)
+    MULTIPLICATION  reduce using rule 17 (term -> STRING .)
+    DIVISION        reduce using rule 17 (term -> STRING .)
+    SEMI            reduce using rule 17 (term -> STRING .)
+
+
+state 20
+
+    (10) expr -> expr ADDITION . term
+    (15) term -> . NUM
+    (16) term -> . ID
+    (17) term -> . STRING
+
+    NUM             shift and go to state 18
+    ID              shift and go to state 15
+    STRING          shift and go to state 19
+
+    term                           shift and go to state 24
+
+state 21
+
+    (11) expr -> expr SUBTRACTION . term
+    (15) term -> . NUM
+    (16) term -> . ID
+    (17) term -> . STRING
+
+    NUM             shift and go to state 18
+    ID              shift and go to state 15
+    STRING          shift and go to state 19
+
+    term                           shift and go to state 25
+
+state 22
+
+    (12) expr -> expr MULTIPLICATION . term
+    (15) term -> . NUM
+    (16) term -> . ID
+    (17) term -> . STRING
+
+    NUM             shift and go to state 18
+    ID              shift and go to state 15
+    STRING          shift and go to state 19
+
+    term                           shift and go to state 26
+
+state 23
+
+    (13) expr -> expr DIVISION . term
+    (15) term -> . NUM
+    (16) term -> . ID
+    (17) term -> . STRING
+
+    NUM             shift and go to state 18
+    ID              shift and go to state 15
+    STRING          shift and go to state 19
+
+    term                           shift and go to state 27
+
+state 24
+
+    (10) expr -> expr ADDITION term .
+
+    ADDITION        reduce using rule 10 (expr -> expr ADDITION term .)
+    SUBTRACTION     reduce using rule 10 (expr -> expr ADDITION term .)
+    MULTIPLICATION  reduce using rule 10 (expr -> expr ADDITION term .)
+    DIVISION        reduce using rule 10 (expr -> expr ADDITION term .)
+    SEMI            reduce using rule 10 (expr -> expr ADDITION term .)
+
+
+state 25
+
+    (11) expr -> expr SUBTRACTION term .
+
+    ADDITION        reduce using rule 11 (expr -> expr SUBTRACTION term .)
+    SUBTRACTION     reduce using rule 11 (expr -> expr SUBTRACTION term .)
+    MULTIPLICATION  reduce using rule 11 (expr -> expr SUBTRACTION term .)
+    DIVISION        reduce using rule 11 (expr -> expr SUBTRACTION term .)
+    SEMI            reduce using rule 11 (expr -> expr SUBTRACTION term .)
+
+
+state 26
+
+    (12) expr -> expr MULTIPLICATION term .
+
+    ADDITION        reduce using rule 12 (expr -> expr MULTIPLICATION term .)
+    SUBTRACTION     reduce using rule 12 (expr -> expr MULTIPLICATION term .)
+    MULTIPLICATION  reduce using rule 12 (expr -> expr MULTIPLICATION term .)
+    DIVISION        reduce using rule 12 (expr -> expr MULTIPLICATION term .)
+    SEMI            reduce using rule 12 (expr -> expr MULTIPLICATION term .)
+
+
+state 27
+
+    (13) expr -> expr DIVISION term .
+
+    ADDITION        reduce using rule 13 (expr -> expr DIVISION term .)
+    SUBTRACTION     reduce using rule 13 (expr -> expr DIVISION term .)
+    MULTIPLICATION  reduce using rule 13 (expr -> expr DIVISION term .)
+    DIVISION        reduce using rule 13 (expr -> expr DIVISION term .)
+    SEMI            reduce using rule 13 (expr -> expr DIVISION term .)
+
