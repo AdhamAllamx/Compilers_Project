@@ -20,6 +20,21 @@ Additionally, as an enhancement, the parser now supports **subtraction (-)**, **
 
 ---
 
+# How to run the code
+
+1. Ensure you have Python 3.11+ installed.
+2. Install PLY if not already installed:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Run the parser with the sample input file:
+   ```bash
+   python Parser.py
+   ```
+4. The output will display the token stream and the generated AST, along with any syntax errors encountered during parsing.
+
+---
+
 ## How It Works
 
 The core components are:
