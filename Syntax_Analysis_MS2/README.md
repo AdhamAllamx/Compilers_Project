@@ -167,20 +167,22 @@ greeting = "Hello" + " World!";
 
 - ### AST from Parser:
 
-('program', [
-  ('var_decl', 'int', 'x'),
-  ('var_decl', 'int', 'y'),
-  ('var_decl', 'int', 'z'),
-  ('var_decl', 'string', 'email'),
-  ('var_decl', 'string', 'name'),
-  ('var_decl', 'string', 'greeting'),
-  ('assign', 'x', ('num', '5')),
-  ('assign', 'y', ('+', ('var', 'x'), ('num', '3'))),
-  ('assign', 'z', ('/', ('var', 'x'), ('var', 'y'))),
-  ('assign', 'email', ('str', '"adham.allam.x@gmail.com"')),
-  ('assign', 'name', ('str', '"Alice"')),
-  ('assign', 'greeting', ('+', ('str', '"Hello"'), ('str', '" World!"')))
-])
+```
+('program',
+   ('var_decl', 'int', 'x'),
+   ('var_decl', 'int', 'y'),
+   ('var_decl', 'int', 'z'),
+   ('var_decl', 'string', 'email'),
+   ('var_decl', 'string', 'name'),
+   ('var_decl', 'string', 'greeting'),
+   ('assign', 'x', ('num', '5')),
+   ('assign', 'y', ('+', ('var', 'x'), ('num', '3'))),
+   ('assign', 'z', ('/', ('var', 'x'), ('var', 'y'))),
+   ('assign', 'email', ('str', '"adham.allam.x@gmail.com"')),
+   ('assign', 'name', ('str', '"Alice"')),
+   ('assign', 'greeting', ('+', ('str', '"Hello"'), ('str', '" World!"')))
+)
+```
 
 - ### Visualized AST Tree
 program
@@ -253,6 +255,17 @@ program
       Root: program
       Purpose: Contains all statements in the program
       Children: List of variable declarations and assignments
+   2. ### Variable Declaration Nodes
+      Format: ('var_decl', type, variable_name)
+      Examples:
+      int x; → ('var_decl', 'int', 'x')
+      string email; → ('var_decl', 'string', 'email')
+   3. ### Assignment Nodes
+      Format: ('assign', variable_name, expression)
+      Examples:
+      x = 5; → ('assign', 'x', ('num', '5'))
+      y = x + 3; → ('assign', 'y', ('+', ('var', 'x'), ('num', '3')))
+   
 
 
 ------------------------------------------------------
