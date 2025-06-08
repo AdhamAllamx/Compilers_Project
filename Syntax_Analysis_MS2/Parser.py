@@ -22,54 +22,54 @@ from Lexer import tokenize  # We will use the tokenize() function from our Miles
 # 2️ AST Node Classes (For building AST tree)
 # --------------------------------------------
 
-class ASTNode:
-    pass
+# class ASTNode:
+#     pass
 
-class Program(ASTNode):
-    def __init__(self, statements):
-        self.statements = statements
-    def __repr__(self):
-        return f"Program({self.statements})"
+# class Program(ASTNode):
+#     def __init__(self, statements):
+#         self.statements = statements
+#     def __repr__(self):
+#         return f"Program({self.statements})"
 
-class VarDecl(ASTNode):
-    def __init__(self, var_type, var_name):
-        self.var_type = var_type
-        self.var_name = var_name
-    def __repr__(self):
-        return f"VarDecl(type={self.var_type}, name={self.var_name})"
+# class VarDecl(ASTNode):
+#     def __init__(self, var_type, var_name):
+#         self.var_type = var_type
+#         self.var_name = var_name
+#     def __repr__(self):
+#         return f"VarDecl(type={self.var_type}, name={self.var_name})"
 
-class Assignment(ASTNode):
-    def __init__(self, var_name, expr):
-        self.var_name = var_name
-        self.expr = expr
-    def __repr__(self):
-        return f"Assignment(name={self.var_name}, expr={self.expr})"
+# class Assignment(ASTNode):
+#     def __init__(self, var_name, expr):
+#         self.var_name = var_name
+#         self.expr = expr
+#     def __repr__(self):
+#         return f"Assignment(name={self.var_name}, expr={self.expr})"
 
-class BinOp(ASTNode):
-    def __init__(self, left, op, right):
-        self.left = left
-        self.op = op
-        self.right = right
-    def __repr__(self):
-        return f"BinOp({self.left}, '{self.op}', {self.right})"
+# class BinOp(ASTNode):
+#     def __init__(self, left, op, right):
+#         self.left = left
+#         self.op = op
+#         self.right = right
+#     def __repr__(self):
+#         return f"BinOp({self.left}, '{self.op}', {self.right})"
 
-class Num(ASTNode):
-    def __init__(self, value):
-        self.value = value
-    def __repr__(self):
-        return f"Num({self.value})"
+# class Num(ASTNode):
+#     def __init__(self, value):
+#         self.value = value
+#     def __repr__(self):
+#         return f"Num({self.value})"
 
-class Str(ASTNode):
-    def __init__(self, value):
-        self.value = value
-    def __repr__(self):
-        return f"Str({self.value})"
+# class Str(ASTNode):
+#     def __init__(self, value):
+#         self.value = value
+#     def __repr__(self):
+#         return f"Str({self.value})"
 
-class Var(ASTNode):
-    def __init__(self, name):
-        self.name = name
-    def __repr__(self):
-        return f"Var({self.name})"
+# class Var(ASTNode):
+#     def __init__(self, name):
+#         self.name = name
+#     def __repr__(self):
+#         return f"Var({self.name})"
 
 # --------------------------------------------
 # 3️ Parser Implementation using PLY
@@ -256,6 +256,7 @@ for stream in raw_tokens:
 # Step 2: Adapt tokens for PLY
 adapted_tokens = adapt_tokens_for_ply(raw_tokens)
 
+
 # Step 3: Create Lexer Adapter
 lexer_adapter = PlyLexerAdapter(adapted_tokens)
 
@@ -264,3 +265,18 @@ ast = parser.parse(lexer=lexer_adapter)
 
 print("\nAST from Parser:")
 print(ast)
+
+def print_ast(node, indent=0):
+    prefix = "  " * indent
+    if isinstance(node, tuple):
+        # First element is the node type or operator
+        print(f"{prefix}{node[0]}")
+        for child in node[1:]:
+            print_ast(child, indent + 1)
+    elif isinstance(node, list):
+        for item in node:
+            print_ast(item, indent)
+    else:
+        print(f"{prefix}{node}")
+print('this is the case after visualization')
+print_ast(ast)

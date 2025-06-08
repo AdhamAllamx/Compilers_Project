@@ -6,7 +6,7 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ADDITION DIVISION EQUALS ID INT MULTIPLICATION NUM SEMI STRING STRING_TYPE SUBTRACTIONprogram : stmt_liststmt_list : stmt stmt_liststmt_list : stmtstmt : var_decl SEMIstmt : assignment SEMIvar_decl : type IDtype : INT\n            | STRING_TYPEassignment : ID EQUALS exprexpr : expr ADDITION termexpr : expr SUBTRACTION termexpr : expr MULTIPLICATION termexpr : expr DIVISION termexpr : termterm : NUMterm : IDterm : STRING'
+_lr_signature = 'ADDITION DIVISION EQUALS ID INT MULTIPLICATION NUM SEMI STRING STRING_TYPE SUBTRACTIONprogram : stmt_liststmt_list : stmt stmt_liststmt_list : stmtstmt : var_decl SEMIstmt : assignment SEMIvar_decl : type IDtype : INT\n| STRING_TYPEassignment : ID EQUALS exprexpr : expr ADDITION termexpr : expr SUBTRACTION termexpr : expr MULTIPLICATION termexpr : expr DIVISION termexpr : termterm : NUMterm : IDterm : STRING'
     
 _lr_action_items = {'ID':([0,3,6,8,9,11,12,14,20,21,22,23,],[7,7,13,-7,-8,-4,-5,15,15,15,15,15,]),'INT':([0,3,11,12,],[8,8,-4,-5,]),'STRING_TYPE':([0,3,11,12,],[9,9,-4,-5,]),'$end':([1,2,3,10,11,12,],[0,-1,-3,-2,-4,-5,]),'SEMI':([4,5,13,15,16,17,18,19,24,25,26,27,],[11,12,-6,-16,-9,-14,-15,-17,-10,-11,-12,-13,]),'EQUALS':([7,],[14,]),'NUM':([14,20,21,22,23,],[18,18,18,18,18,]),'STRING':([14,20,21,22,23,],[19,19,19,19,19,]),'ADDITION':([15,16,17,18,19,24,25,26,27,],[-16,20,-14,-15,-17,-10,-11,-12,-13,]),'SUBTRACTION':([15,16,17,18,19,24,25,26,27,],[-16,21,-14,-15,-17,-10,-11,-12,-13,]),'MULTIPLICATION':([15,16,17,18,19,24,25,26,27,],[-16,22,-14,-15,-17,-10,-11,-12,-13,]),'DIVISION':([15,16,17,18,19,24,25,26,27,],[-16,23,-14,-15,-17,-10,-11,-12,-13,]),}
 

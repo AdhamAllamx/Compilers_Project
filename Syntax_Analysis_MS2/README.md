@@ -165,7 +165,7 @@ greeting = "Hello" + " World!";
 ['ID(greeting)', '=', 'STRING("Hello")', '+', 'STRING(" World!")', ';']
 
 
-- AST from Parser:
+- ### AST from Parser:
 
 ('program', [
   ('var_decl', 'int', 'x'),
@@ -181,6 +181,78 @@ greeting = "Hello" + " World!";
   ('assign', 'name', ('str', '"Alice"')),
   ('assign', 'greeting', ('+', ('str', '"Hello"'), ('str', '" World!"')))
 ])
+
+- ### Visualized AST Tree
+program
+  var_decl
+    int
+    x
+
+  var_decl
+    int
+    y
+
+  var_decl
+    int
+    z
+
+  var_decl
+    string
+    email
+
+  var_decl
+    string
+    name
+
+  var_decl
+    string
+    greeting
+
+
+  assign
+    x
+    num
+      5
+
+  assign
+    y
+    +
+      var
+        x
+      num
+        3
+
+  assign
+    z
+    /
+      var
+        x
+      var
+        y
+
+  assign
+    email
+    str
+      "adham.allam.x@gmail.com"
+
+  assign
+    name
+    str
+      "Alice"
+
+  assign
+    greeting
+    +
+      str
+        "Hello"
+      str
+        " World!"
+
+   - ## AST Node Types and Structure
+   1. ### Program Node
+      Root: program
+      Purpose: Contains all statements in the program
+      Children: List of variable declarations and assignments
 
 
 ------------------------------------------------------
