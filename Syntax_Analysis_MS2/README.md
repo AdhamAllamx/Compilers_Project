@@ -253,21 +253,28 @@ program
 ```
    - ## AST Node Types and Structure
    1. ### Program Node
+      ```
       Root: program
       Purpose: Contains all statements in the program
       Children: List of variable declarations and assignments
+      ```
    2. ### Variable Declaration Nodes
+   ```
       Format: ('var_decl', type, variable_name)
       Examples:
       int x; → ('var_decl', 'int', 'x')
       string email; → ('var_decl', 'string', 'email')
+   ```
    3. ### Assignment Nodes
+   ```
       Format: ('assign', variable_name, expression)
       Examples:
       x = 5; → ('assign', 'x', ('num', '5'))
       y = x + 3; → ('assign', 'y', ('+', ('var', 'x'), ('num', '3')))
+   ```
    4. ### Expression Nodes
-      #### Binary Operations
+      ### Binary Operations
+      ```
 
          Format: (operator, left_operand, right_operand)
          Supported Operators: +, -, *, /
@@ -275,15 +282,15 @@ program
 
          x + 3 → ('+', ('var', 'x'), ('num', '3'))
          x / y → ('/', ('var', 'x'), ('var', 'y'))
+      ``
 
 
-
-     #### Terminal Nodes
-
+     ### Terminal Nodes
+      ```
          `Numbers: ('num', value) - e.g., ('num', '5')
          Strings: ('str', value) - e.g., ('str', '"Alice"')
          Variables: ('var', name) - e.g., ('var', 'x')`
-
+      ```
    - ## Detailed Analysis
       - ### Variable Declarations Section
       ```
@@ -306,7 +313,7 @@ program
          var_decl
          string
          name
-         
+
          var_decl
          string
          greeting
