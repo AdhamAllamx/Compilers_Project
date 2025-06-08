@@ -127,7 +127,7 @@ If invalid syntax is detected, a `SyntaxError` is raised with a detailed message
 --------------------------------------------------
 
 ## Test File
-
+```
 The `sample_input.txt` file contains valid test cases, including:
 
 int x;
@@ -143,12 +143,12 @@ z = x / y;
 email = "adham.allam.x@gmail.com";
 name = "Alice";
 greeting = "Hello" + " World!";
-
+```
 
 ------------------------------------------------------
 
 ## Example output 
-
+```
 - Lexical Analyzer Tokens Stream:
 
 ['KW(int)', 'ID(x)', ';']
@@ -163,7 +163,7 @@ greeting = "Hello" + " World!";
 ['ID(email)', '=', 'STRING("adham.allam.x@gmail.com")', ';']
 ['ID(name)', '=', 'STRING("Alice")', ';']
 ['ID(greeting)', '=', 'STRING("Hello")', '+', 'STRING(" World!")', ';']
-
+```
 
 - ### AST from Parser:
 
@@ -185,6 +185,7 @@ greeting = "Hello" + " World!";
 ```
 
 - ### Visualized AST Tree
+```
 program
   var_decl
     int
@@ -249,7 +250,7 @@ program
         "Hello"
       str
         " World!"
-
+```
    - ## AST Node Types and Structure
    1. ### Program Node
       Root: program
@@ -265,7 +266,116 @@ program
       Examples:
       x = 5; → ('assign', 'x', ('num', '5'))
       y = x + 3; → ('assign', 'y', ('+', ('var', 'x'), ('num', '3')))
-   
+   4. ### Expression Nodes
+      #### Binary Operations
+
+         Format: (operator, left_operand, right_operand)
+         Supported Operators: +, -, *, /
+         Examples:
+
+         x + 3 → ('+', ('var', 'x'), ('num', '3'))
+         x / y → ('/', ('var', 'x'), ('var', 'y'))
+
+
+
+     #### Terminal Nodes
+
+         `Numbers: ('num', value) - e.g., ('num', '5')
+         Strings: ('str', value) - e.g., ('str', '"Alice"')
+         Variables: ('var', name) - e.g., ('var', 'x')`
+
+   - ## Detailed Analysis
+      - ### Variable Declarations Section
+      ```
+         var_decl
+         int
+         x
+
+         var_decl
+         int
+         y
+
+         var_decl
+         int
+         z
+
+         var_decl
+         string
+         email
+
+         var_decl
+         string
+         name
+         
+         var_decl
+         string
+         greeting
+
+        - 6 variable declarations total
+        - 3 integer variables: x, y, z
+        - 3 string variables: email, name, greeting
+       ```
+   - ## Assignment Statements Section
+      - ### Simple Assignment
+      ```
+         assign
+         x
+         num
+            5
+
+         Source: x = 5;
+         Meaning: Assign literal value 5 to variable x
+      ```
+      - ### Binary Operation Assignment
+         ```
+         assign
+         y
+         +
+            var
+               x
+            num
+               3
+
+         Source: y = x + 3;
+         Meaning: Add variable x and literal 3, assign result to y
+         ```
+      - ### Variable-to-Variable Operation
+         ```
+         assign
+         z
+         /
+            var
+               x
+            var
+               y
+
+         Source: z = x / y;
+         Meaning: Divide variable x by variable y, assign result to z
+         ```
+      - ### String Assignment 
+         ```
+         assign
+         email
+         str
+            "adham.allam.x@gmail.com"
+
+         Source: email = "adham.allam.x@gmail.com";
+         Meaning: Assign string literal to email variable
+         ```
+      - ### String Concatenation 
+         ```
+         assign
+         greeting
+         +
+            str
+               "Hello"
+            str
+               " World!"
+         Source: greeting = "Hello" + " World!";
+         Meaning: Concatenate two string literals using + operator 
+         ```
+
+
 
 
 ------------------------------------------------------

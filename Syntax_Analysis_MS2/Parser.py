@@ -263,8 +263,23 @@ lexer_adapter = PlyLexerAdapter(adapted_tokens)
 # Step 4: Parse and get AST
 ast = parser.parse(lexer=lexer_adapter)
 
+
+import pprint
+
+def custom_ast_print(ast):
+    """Print AST in desired format"""
+    print("('program',")
+    statements = ast[1]
+    for i, stmt in enumerate(statements):
+        print(f"   {stmt}", end="")
+        if i < len(statements) - 1:
+            print(",")
+        else:
+            print()
+    print(")")
+
 print("\nAST from Parser:")
-print(ast)
+custom_ast_print(ast)
 
 def print_ast(node, indent=0):
     prefix = "  " * indent
